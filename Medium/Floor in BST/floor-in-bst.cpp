@@ -19,22 +19,19 @@ struct Node {
 // } Driver Code Ends
 // Function to search a node in BST.
 class Solution{
-
 public:
     int floor(Node* root, int x){
         if(root == NULL){
             return -1;
         }
-        int temp;
+        int temp, present = INT_MIN;
         if(root -> data > x){
             temp = floor(root -> left, x);
-        }else{
+        }else if(root -> data <= x){
+            present = root -> data;
             temp = floor(root -> right, x);
         }
-        if(root -> data <= x and root -> data > temp){
-            return root -> data;
-        }
-        return temp;
+        return max(present, temp);
     }
 };
 
