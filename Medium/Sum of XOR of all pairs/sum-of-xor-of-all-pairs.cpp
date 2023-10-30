@@ -7,7 +7,6 @@ using namespace std;
 
 // } Driver Code Ends
 
-
 class Solution{
     public:
     long long int sumXOR(int arr[], int n){
@@ -27,6 +26,7 @@ class Solution{
         return sum;
     }
 };
+
 
 //{ Driver Code Starts.
 
