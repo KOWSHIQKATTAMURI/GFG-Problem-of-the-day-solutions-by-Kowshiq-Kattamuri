@@ -101,37 +101,37 @@ struct Node
 class Solution{
 public:
     int countPairs(Node* root1, Node* root2, int target){
-        if (root1 == NULL or root2 == NULL){
+        if(root1 == NULL or root2 == NULL){
             return 0;
         }
-        stack<Node*> stk1, stk2;
+        stack<Node*> bst1, bst2;
         Node* top1, *top2;
         int count = 0;
         while(true){
-            while(root1 != NULL){
-                stk1.push(root1);
+            while(root1){
+                bst1.push(root1);
                 root1 = root1 -> left;
             }
-            while(root2 != NULL){
-                stk2.push(root2);
+            while(root2){
+                bst2.push(root2);
                 root2 = root2 -> right;
             }
-            if(stk1.empty() or stk2.empty()){
+            if(bst1.empty() or bst2.empty()){
                 break;
             }
-            top1 = stk1.top();
-            top2 = stk2.top();
-            if((top1 -> data + top2 -> data) == target){
+            top1 = bst1.top();
+            top2 = bst2.top();
+            if(top1 -> data + top2 -> data == target){
                 count++;
-                stk1.pop();
-                stk2.pop();
+                bst1.pop();
+                bst2.pop();
                 root1 = top1 -> right;
                 root2 = top2 -> left;
-            }else if((top1 -> data + top2 -> data) < target){
-                stk1.pop();
+            }else if(top1 -> data + top2 -> data < target){
+                bst1.pop();
                 root1 = top1 -> right;
             }else{
-                stk2.pop();
+                bst2.pop();
                 root2 = top2 -> left;
             }
         }
