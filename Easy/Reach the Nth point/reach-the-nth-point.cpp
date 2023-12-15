@@ -3,18 +3,21 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution{
 	public:
 		int nthPoint(int n){
-		    int zeroth_step = 1, first_step = 1, steps = 0, mod = 1e9 + 7;
+		    int zeroth = 1, first = 1, mod = 1e9 + 7, ways = 0;
 		    for(int ith_step = 2; ith_step <= n; ith_step++){
-		        steps = (first_step%mod + zeroth_step%mod)%mod;
-		        zeroth_step = first_step;
-		        first_step = steps;
+		        ways = (zeroth%mod + first%mod)%mod;
+		        zeroth = first;
+		        first = ways;
 		    }
-		    return first_step;
+		    return first;
 		}
 };
+
+
 
 //{ Driver Code Starts.
 int main(){
