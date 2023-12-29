@@ -21,12 +21,15 @@ public:
 	    if(mp.size() != 2){
 	        return false;
 	    }
-	    if((mp.begin() -> second == (n/k - 1)) or mp.begin()->second == 1){
+	    if((mp.begin() -> second == 1) or (mp.begin() -> second = (n/k - 1))){
 	        return true;
 	    }
 	    return false;
     }
 };
+
+
+
 
 //{ Driver Code Starts.
 
