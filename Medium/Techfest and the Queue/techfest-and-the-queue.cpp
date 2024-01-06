@@ -7,23 +7,33 @@ using namespace std;
 
 class Solution {
 public:
-	int sumOfPowers(int a, int b){
-	    int ans = 0;
-        for(int i = a; i <= b; i++){
-            int val = i;
-            for(int j = 2; j*j <= i; j++){
-                while(val % j == 0){
-                    ans++;
-                    val /= j;
+	void sieveOfEratosthenes(int n, vector<int> &prime){
+        for(int i = 2; i*i <= n; i++){
+            if(prime[i] == 0){
+                for(int j = i*i; j <= n; j = j + i){
+                   if(prime[j] == 0){
+                       prime[j] = i;
+                   }
                 }
             }
-            if(val > 1){
-                ans++;
-            }
         }
-        return ans;
+    }
+	int sumOfPowers(int a, int b){
+	    int points = 0;
+	    vector<int> prime(b + 1, 0), dp(b + 1, 0);
+	    sieveOfEratosthenes(b, prime);
+	    for(int num = 2; num <= b; num++){
+	        if(prime[num] == 0){
+	            dp[num] = 1;
+	        }else{
+	            dp[num] = 1 + dp[num/prime[num]];
+	        }
+	        points += (num >= a) ? dp[num] : 0;
+	    }
+	    return points;
 	}
 };
+
 
 //{ Driver Code Starts.
 int main(){
