@@ -12,8 +12,8 @@ class Solution{
         vector<int> ans;
         for(int i = 0; i < M; i++){
             int number = 0;
-            for(int j = 0; j < N; j++){
-                number += (matrix[i][j] << j);
+            for(int j = 0; j < N; j++){ //binary to decimal
+                number += (matrix[i][j] << (N - 1 - j));
             }
             if(s.find(number) == s.end()){
                 s.insert(number);
